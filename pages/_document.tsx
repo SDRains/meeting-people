@@ -3,9 +3,10 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
   return (
     <Html lang="en" className="h-full">
-      <Head>
+      <header>
           <title>Meeting People Is Easy</title>
-      </Head>
+      </header>
+        
       <body className="h-full">
         <Main />
         <NextScript />
