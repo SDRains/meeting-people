@@ -5,7 +5,7 @@ import {Fragment, useState} from "react";
 import {Dialog, Transition} from "@headlessui/react";
 
 // @ts-ignore
-export default function gallery({fileNames}) {
+export default function BwGallery({fileNames}) {
     const [selectedImage, setSelectedImage] = useState("")
     const [showPopup, setShowPopup] = useState(false)
 

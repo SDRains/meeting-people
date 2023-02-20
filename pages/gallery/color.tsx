@@ -5,7 +5,7 @@ import {Fragment, useState} from "react";
 import { Transition, Dialog } from "@headlessui/react";
 
 // @ts-ignore
-export default function gallery({fileNames}) {
+export default function ColorGallery({fileNames}) {
     const [selectedImage, setSelectedImage] = useState("")
     const [showPopup, setShowPopup] = useState(false)
 
