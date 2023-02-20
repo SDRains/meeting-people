@@ -3,6 +3,7 @@ import path from "path";
 import fs from 'fs';
 import {Fragment, useState} from "react";
 import {Dialog, Transition} from "@headlessui/react";
+import Image from "next/image";
 
 // @ts-ignore
 export default function BwGallery({fileNames}) {
@@ -24,8 +25,7 @@ export default function BwGallery({fileNames}) {
                                             setShowPopup(true)
                                             setSelectedImage(imageName)
                                         }}>
-
-                                            <img src={`/images/bw/${imageName}.jpg`} className="w-full" />
+                                            <Image src={`/images/bw/${imageName}.jpg`} className="w-full" alt={imageName} />
                                         </div>
                                     </div>
                                 ))}
