@@ -14,7 +14,7 @@ export default function BwGallery(pageData: imgData) {
     const [showPopup, setShowPopup] = useState(false)
     const images = pageData.images
 
-    function awsImgComponent(imgName: string) {
+    function AwsImgComponent(imgName: string) {
         const [imageUrl, setImageUrl] = useState<string | null>(null);
 
         useEffect(() => {
@@ -38,7 +38,7 @@ export default function BwGallery(pageData: imgData) {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 sm:gap-6">
                             <>
                                 {images.slice(1).map((imageName: string) => {
-                                    const signedUrl = awsImgComponent(imageName) as string
+                                    const signedUrl = AwsImgComponent(imageName) as string
 
                                     return (
                                         <div key={imageName}>
