@@ -33,8 +33,9 @@ export default function BwGallery(pageData: imgData) {
             <Navigation active="Gallery"/>
 
             <main>
-                <div className="py-12">
+                <div className="py-6 sm:py-8">
                     <div className="m-auto text-right w-full px-0 sm:pl-32 sm:pr-20">
+                        <h3 className="text-center font-thin text-xl sm:mb-8">Black & White Collection</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 sm:gap-6">
                             <>
                                 {images.slice(1).map((imageName: string) => {
