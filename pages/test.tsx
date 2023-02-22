@@ -1,9 +1,14 @@
 import {useState} from "react";
-import aws from "./api/creatingAws";
+import {aws, getAWS} from "./api/creatingAws";
 
-export default function Test() {
+interface imgData {
+    images: []
+}
+
+export default function Test(pageData: imgData) {
     const [message, setMessage] = useState("");
     const [file, setFile] = useState(null);
+    const [images, setImages] = useState([])
 
     function storeFile(e: any) {
         console.log(e.target)
@@ -17,6 +22,8 @@ export default function Test() {
         setMessage(String(returnData))
     }
 
+    console.log(pageData.images)
+
     return (
         <>
             <p>Upload File:</p>
@@ -24,6 +31,20 @@ export default function Test() {
             <input type={"file"} onChange={(e) => storeFile(e)} />
 
             <input type={"button"} defaultValue={"Send"} onClick={uploadFile} className="bg-blue-300 py-2 px-6" />
+
+            <div className="mt-20">
+                <p>{images.length}</p>
+            </div>
         </>
     )
+}
+
+export async function getServerSideProps() {
+    let returnData = await getAWS()
+
+    return {
+        props: {
+            images: returnData
+        }
+    }
 }

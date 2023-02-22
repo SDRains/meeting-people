@@ -1,5 +1,7 @@
 import S3 from "aws-sdk/clients/s3";
 import axios from "axios";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
 const s3 = new S3({
     region: "us-west-1",
@@ -8,11 +10,11 @@ const s3 = new S3({
     signatureVersion: "v4"
 })
 
-export default async function aws(file: File) {
+export async function aws(file: File) {
     try {
         const fileParams = {
             Bucket: "meetingpeople",
-            Key: file.name,
+            Key: "" + file.name, // Add folder name into string before key. Ex: "test/"
             Expires: 600,
             ContentType: file.type
         }
@@ -30,4 +32,16 @@ export default async function aws(file: File) {
     catch (err) {
         return err
     }
+}
+
+export async function getAWS() {
+    const response = await s3.listObjects({Bucket: 'meetingpeople', }).promise();
+    //console.log("Response: ", response.Contents)
+    let data: (string | undefined)[] = []
+
+    response.Contents?.map((x) => {
+        data.push(x.Key)
+    })
+
+    return (data)
 }
