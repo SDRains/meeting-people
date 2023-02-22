@@ -3,7 +3,11 @@ import path from "path";
 import fs from 'fs';
 import {Fragment, useState} from "react";
 import {Dialog, Transition} from "@headlessui/react";
-import Image from "next/image";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+// @ts-ignore
+import { s3Client } from "/lib/s3Client"; // Helper function that creates an Amazon S3 service client module.
+
+
 
 // @ts-ignore
 export default function BwGallery({fileNames}) {
@@ -12,7 +16,7 @@ export default function BwGallery({fileNames}) {
 
     return (
         <>
-            <Navigation active="Gallery" />
+            <Navigation active="Gallery"/>
 
             <main>
                 <div className="py-12">
@@ -21,11 +25,13 @@ export default function BwGallery({fileNames}) {
                             <>
                                 {fileNames.map((imageName: string) => (
                                     <div key={imageName}>
-                                        <div className="flex items-center hover:opacity-90 hover:cursor-pointer" key={imageName} onClick={() => {
+                                        <div className="flex items-center hover:opacity-90 hover:cursor-pointer"
+                                             key={imageName} onClick={() => {
                                             setShowPopup(true)
                                             setSelectedImage(imageName)
                                         }}>
-                                            <Image src={`/images/bw/${imageName}.jpg`} className="w-full" alt={imageName} />
+                                            <img src={`/images/bw/${imageName}.jpg`} className="w-full" alt={imageName}
+                                                 loading={"lazy"}/>
                                         </div>
                                     </div>
                                 ))}
@@ -41,11 +47,13 @@ export default function BwGallery({fileNames}) {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                         >
-                                            <div className="fixed inset-0 bg-gray-200 bg-opacity-20 transition-opacity" />
+                                            <div
+                                                className="fixed inset-0 bg-gray-200 bg-opacity-20 transition-opacity"/>
                                         </Transition.Child>
 
                                         <div className="fixed inset-0 z-10 overflow-y-auto">
-                                            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                            <div
+                                                className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                                                 <Transition.Child
                                                     as={Fragment}
                                                     enter="ease-out duration-300"
@@ -55,9 +63,11 @@ export default function BwGallery({fileNames}) {
                                                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                                                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 >
-                                                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6">
+                                                    <Dialog.Panel
+                                                        className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6">
                                                         <div>
-                                                            <img src={`/images/bw/${selectedImage}.jpg`} className="w-full pt-2" />
+                                                            <img src={`/images/bw/${selectedImage}.jpg`}
+                                                                 className="w-full pt-2"/>
                                                         </div>
                                                     </Dialog.Panel>
                                                 </Transition.Child>

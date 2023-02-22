@@ -24,7 +24,7 @@ export default function ColorGallery({fileNames}) {
                                             setShowPopup(true)
                                             setSelectedImage(imageName)
                                         }}>
-                                            <img src={`/images/color/${imageName}.jpg`} className="w-full py-4" />
+                                            <img src={`/images/color/${imageName}.jpg`} className="w-full py-4" alt={imageName} loading={"lazy"} />
                                         </div>
 
                                         <Transition.Root show={showPopup} as={Fragment}>
