@@ -8,7 +8,8 @@ interface imgData {
 export default function Test(pageData: imgData) {
     const [message, setMessage] = useState("");
     const [file, setFile] = useState(null);
-    const [images, setImages] = useState([])
+    const images = pageData.images
+    const baseURL = "https://meetingpeople.s3.us-west-1.amazonaws.com/"
 
     function storeFile(e: any) {
         console.log(e.target)
@@ -21,8 +22,6 @@ export default function Test(pageData: imgData) {
         let returnData = await aws(file) // Upload File
         setMessage(String(returnData))
     }
-
-    console.log(pageData.images)
 
     return (
         <>
@@ -40,7 +39,7 @@ export default function Test(pageData: imgData) {
 }
 
 export async function getServerSideProps() {
-    let returnData = await getAWS()
+    let returnData = await getAWS("bw")
 
     return {
         props: {
