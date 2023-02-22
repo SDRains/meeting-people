@@ -34,7 +34,7 @@ export default function BwGallery(pageData: imgData) {
 
             <main>
                 <div className="py-12">
-                    <div className="m-auto text-right w-full px-8 sm:px-0 sm:pl-32 sm:pr-20">
+                    <div className="m-auto text-right w-full px-0 sm:pl-32 sm:pr-20">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 sm:gap-6">
                             <>
                                 {images.slice(1).map((imageName: string) => {
