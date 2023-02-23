@@ -50,6 +50,6 @@ export async function getObjectFromAWS(imageKey: string) {
     return s3.getSignedUrl('getObject', {
         Bucket: "meetingpeople",
         Key: imageKey,
-        Expires: 60 // URL expiration time in seconds
+        Expires: 86400 // URL expiration time in seconds (1 Day)
     });
 }
